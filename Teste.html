@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Pedido de Casamento</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 50px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      position: absolute;
+    }
+
+    #sim {
+      background-color: #4CAF50;
+      color: white;
+      left: 40%;
+      top: 50%;
+    }
+
+    #nao {
+      background-color: #f44336;
+      color: white;
+      left: 55%;
+      top: 50%;
+      transition: top 0.2s, left 0.2s;
+    }
+  </style>
+</head>
+<body>
+  <h1>Janaina, quer casar comigo?</h1>
+  <button id="sim">Sim 💍</button>
+  <button id="nao">Não 😅</button>
+
+  <script>
+    const btnNao = document.getElementById('nao');
+    const btnSim = document.getElementById('sim');
+
+    function fugir(event) {
+      const touchX = event.touches ? event.touches[0].clientX : event.clientX;
+      const touchY = event.touches ? event.touches[0].clientY : event.clientY;
+
+      const btnRect = btnNao.getBoundingClientRect();
+      const distancia = Math.hypot(touchX - btnRect.left, touchY - btnRect.top);
+
+      if (distancia < 100) {
+        const novaEsquerda = Math.random() * (window.innerWidth - btnNao.offsetWidth);
+        const novaTopo = Math.random() * (window.innerHeight - btnNao.offsetHeight);
+        btnNao.style.left = `${novaEsquerda}px`;
+        btnNao.style.top = `${novaTopo}px`;
+      }
+    }
+
+    function redirecionar() {
+      window.location.href = "https://giphy.com/gifs/milk-and-mocha-bear-SYo1DFS8NLhhqzzjMU";
+    }
+
+    btnSim.addEventListener('click', redirecionar);
+    document.addEventListener('mousemove', fugir);
+    document.addEventListener('touchmove', fugir);
+  </script>
+</body>
+</html>
